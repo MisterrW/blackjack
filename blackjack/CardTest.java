@@ -4,7 +4,6 @@ import org.junit.*;
 
 public class CardTest {
 
-
   @Test
   public void checkCardHasSuit() {
     Card card = new Card(CardSuit.HEARTS, CardValue.THREE);  
