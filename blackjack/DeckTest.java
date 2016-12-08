@@ -8,7 +8,7 @@ public class DeckTest {
   public void checkDeckLength() {
     Deck deck = new Deck();
     deck.fillDeck();
-    assertEquals(52, deck.getDeck().size());
+    assertEquals(52, deck.getCards().size());
   }
 
 }

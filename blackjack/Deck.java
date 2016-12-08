@@ -2,10 +2,10 @@
 import java.util.*;
 
 public class Deck {
- private ArrayList<Card> deck;
+ private ArrayList<Card> cards;
 
  public Deck(){
-  this.deck = new ArrayList<Card>();
+  this.cards = new ArrayList<Card>();
   }
 
   public void fillDeck() {
@@ -13,14 +13,14 @@ public class Deck {
   CardValue[] values = CardValue.values();
   for (CardSuit suit : suits) {
     for (CardValue value : values) {
-      deck.add(new Card(suit, value));
+      cards.add(new Card(suit, value));
       }
     }
   }
 
-  public ArrayList<Card> getDeck() {
-    Collections.shuffle(deck);
-    return deck;
+  public ArrayList<Card> getCards() {
+    Collections.shuffle(cards);
+    return cards;
   }
 }
 
