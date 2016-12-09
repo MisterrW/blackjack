@@ -1,5 +1,4 @@
 package card_game;
-
 import java.util.*;
 
 public class Deck {
@@ -19,7 +18,7 @@ public class Deck {
     }
   }
 
-  public void shufleCards() {
+  public void shuffleCards() {
     Collections.shuffle(cards);
   }
 

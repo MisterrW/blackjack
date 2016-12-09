@@ -13,12 +13,6 @@ public class HandTest {
     assertEquals(1, hand.showHand().size());
   }
 
-  // @Test
-  // public void checkCardHasValue() {
-  //   Card card = new Card(CardSuit.HEARTS, CardValue.THREE);
-  //   assertEquals(CardValue.THREE, card.getValue());
-  // }
-
   @Test
   public void canShowHand() {
     Card card = new Card(CardSuit.HEARTS, CardValue.THREE);
