@@ -1,3 +1,4 @@
+package card_game;
 
 public class Card {
   private CardSuit suit;

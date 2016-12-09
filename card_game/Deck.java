@@ -1,3 +1,4 @@
+package card_game;
 
 import java.util.*;
 
@@ -18,9 +19,21 @@ public class Deck {
     }
   }
 
-  public ArrayList<Card> getCards() {
+  public void shufleCards() {
     Collections.shuffle(cards);
+  }
+
+  public ArrayList<Card> getCards() {
     return cards;
+  }
+
+  public Card dealCard() {
+    Card card = cards.remove(cards.size() - 1);
+    return card;
+  }
+
+  public void returnCardToBackOfDeck(Card card) {
+    cards.add(0, card);
   }
 }
 
