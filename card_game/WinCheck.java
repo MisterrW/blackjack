@@ -21,6 +21,7 @@ public class WinCheck {
         String suitCaps = suit.substring(0, 1).toUpperCase() + suit.substring(1);
         System.out.println(valueCaps + " of " + suitCaps);
       }
+      System.out.println("*~*~*~*~*");
     }
   }
 
@@ -68,7 +69,18 @@ public class WinCheck {
       calcScore(player);
       System.out.println(player.getName() + " scores " + player.getScore());
     }
-    
+
+    System.out.println("*~*~*~*~*");
+
+    if (allPlayers.get(0).getScore() > allPlayers.get(1).getScore()) {
+      System.out.println(allPlayers.get(0).getName() + " wins!");
+    } 
+    else if (allPlayers.get(0).getScore() < allPlayers.get(1).getScore()) {
+      System.out.println(allPlayers.get(1).getName() + " wins!");
+    } 
+    else {
+      System.out.println("It's a draw!");
+    }
 
   }
 

@@ -7,7 +7,7 @@ public class GameManager {
 
   public GameManager(){
     this.deck = new Deck();
-    this. allPlayers = new ArrayList<CardPlayer>();
+    this.allPlayers = new ArrayList<CardPlayer>();
   }
 
   public void play(){
