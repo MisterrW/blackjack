@@ -1,7 +1,7 @@
 package card_game;
 import java.util.*;
 
-public class Player implements CardPlayer{
+public abstract class Player{
   private String name;
   private Hand hand;
   private int score;

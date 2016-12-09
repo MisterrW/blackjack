@@ -20,7 +20,7 @@ public class GameManager {
     this.deck.fillDeck();
     this.deck.shuffleCards();
 
-    Player player1 = new Player("Will", new Hand());
+    Gambler player1 = new Gambler("Will", new Hand());
     Dealer dealer = new Dealer("Des the Dodgy Dealer", new Hand());
 
     this.allPlayers.add(allPlayers.size(), player1);
