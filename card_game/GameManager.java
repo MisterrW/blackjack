@@ -2,11 +2,10 @@ package card_game;
 import java.util.*;    
 
 public class GameManager {
-  private Deck deck;
   private ArrayList<CardPlayer> allPlayers;
+  private Dealer dealer;
 
   public GameManager(){
-    this.deck = new Deck();
     this.allPlayers = new ArrayList<CardPlayer>();
   }
 
@@ -17,11 +16,12 @@ public class GameManager {
   }
 
   public void setup(){
-    this.deck.fillDeck();
-    this.deck.shuffleCards();
-
+    
     Gambler player1 = new Gambler("Will", new Hand());
-    Dealer dealer = new Dealer("Des the Dodgy Dealer", new Hand());
+    Dealer dealer = new Dealer("Des the Dodgy Dealer", new Hand(), new Deck());
+    this.dealer = dealer;
+    dealer.fillDeck();
+    dealer.shuffleCards();
 
     this.allPlayers.add(allPlayers.size(), player1);
     this.allPlayers.add(allPlayers.size(), dealer);
@@ -30,8 +30,9 @@ public class GameManager {
 
   public void deal(){
     for (CardPlayer player : this.allPlayers) {
-      player.receiveCard(deck.dealCard());
-      player.receiveCard(deck.dealCard());
+      for(int i=1; i<=2; i++) {
+      player.receiveCard(this.dealer.dealCard());
+      }
     }
   }
 
