@@ -3,11 +3,13 @@ import java.util.*;
 
 public class GameManager {
   private ArrayList<CardPlayer> allPlayers;
+  private ArrayList<CardPlayer> initialPlayers;
   private Dealer dealer;
   private WinCheck winCheck;
 
   public GameManager(){
     this.allPlayers = new ArrayList<CardPlayer>();
+    this.initialPlayers = new ArrayList<CardPlayer>();
     this.winCheck = new WinCheck(this.allPlayers);
   }
 
@@ -15,7 +17,6 @@ public class GameManager {
     setup();
     initialDeal();
     turnHandler();
-    // winCheck();
   }
 
   public void setup(){
@@ -28,6 +29,12 @@ public class GameManager {
 
     this.allPlayers.add(allPlayers.size(), player1);
     this.allPlayers.add(allPlayers.size(), dealer);
+    this.initialPlayers.add(initialPlayers.size(), player1);
+    this.initialPlayers.add(initialPlayers.size(), dealer);
+  }
+
+  public ArrayList<CardPlayer> checkInitialPlayers(){
+    return this.initialPlayers;
   }
 
   public void initialDeal(){
@@ -64,11 +71,6 @@ public class GameManager {
     }
     String choice1 = choices.get(0);
     String choice2 = choices.get(1);
-
-    System.out.println(choice1);
-    System.out.println(choice2);
-    System.out.println(!choice1.equals("twist"));
-    System.out.println(!choice2.equals("twist"));
 
     System.out.println("*~*~*~*~*");
 

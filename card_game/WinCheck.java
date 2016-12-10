@@ -83,6 +83,8 @@ public class WinCheck {
       showHand(player);
       System.out.println(player.getName() + " is bust!");
       System.out.println(player.getScore());
+      this.allPlayers.remove(player);
+      winCheck();
     }
   }
 
@@ -94,17 +96,21 @@ public class WinCheck {
 
     System.out.println("*~*~*~*~*");
 
-
-    if (allPlayers.get(0).getScore() > allPlayers.get(1).getScore()) {
+    if (allPlayers.size() == 2) {
+      if (allPlayers.get(0).getScore() > allPlayers.get(1).getScore()) {
+        System.out.println(allPlayers.get(0).getName() + " wins!");
+      } 
+      else if (allPlayers.get(0).getScore() < allPlayers.get(1).getScore()) {
+        System.out.println(allPlayers.get(1).getName() + " wins!");
+      } 
+      else {
+        System.out.println("It's a draw!");
+      }
+    } else if (allPlayers.size() == 1) {
       System.out.println(allPlayers.get(0).getName() + " wins!");
-    } 
-    else if (allPlayers.get(0).getScore() < allPlayers.get(1).getScore()) {
-      System.out.println(allPlayers.get(1).getName() + " wins!");
-    } 
-    else {
-      System.out.println("It's a draw!");
+    } else if (allPlayers.size() == 0) {
+      System.out.println("Everyone's bust! Draw!");
     }
-
   }
 
 
