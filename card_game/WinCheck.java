@@ -10,22 +10,25 @@ public class WinCheck {
 
   public void showAllHands() {
     for (CardPlayer player : allPlayers) {
-
-      System.out.println(player.getName() + " has these cards:");
-
-      ArrayList<Card> cards = player.showHand();
-      for (Card card : cards) {
-        String value = card.getValue().toString().toLowerCase();
-        String valueCaps = value.substring(0, 1).toUpperCase() + value.substring(1);
-        String suit = card.getSuit().toString().toLowerCase();
-        String suitCaps = suit.substring(0, 1).toUpperCase() + suit.substring(1);
-        System.out.println(valueCaps + " of " + suitCaps);
-      }
-      System.out.println("*~*~*~*~*");
+      showHand(player);
     }
   }
 
-  public void calcScore(CardPlayer player) {
+  public void showHand(CardPlayer player){
+    System.out.println(player.getName() + " has these cards:");
+
+    ArrayList<Card> cards = player.showHand();
+    for (Card card : cards) {
+      String value = card.getValue().toString().toLowerCase();
+      String valueCaps = value.substring(0, 1).toUpperCase() + value.substring(1);
+      String suit = card.getSuit().toString().toLowerCase();
+      String suitCaps = suit.substring(0, 1).toUpperCase() + suit.substring(1);
+      System.out.println(valueCaps + " of " + suitCaps);
+    }
+    System.out.println("*~*~*~*~*");
+  }
+
+  public int calcScore(CardPlayer player) {
     int score = 0;
     for (Card card : player.showHand()) {
       CardValue value = card.getValue();
@@ -62,6 +65,25 @@ public class WinCheck {
       score += cardWorth;
     }
     player.setScore(score);
+    
+    for(Card card : player.showHand()) {
+      if(card.getValue() == CardValue.ACE) {
+        if(player.getScore() > 21) {
+          System.out.println("Aces low!");
+          player.setScore(player.getScore()-10);
+        }
+      }
+    }
+    
+    return player.getScore();
+  }
+
+  public void bustCheck(CardPlayer player){
+    if(calcScore(player) > 21) {
+      showHand(player);
+      System.out.println(player.getName() + " is bust!");
+      System.out.println(player.getScore());
+    }
   }
 
   public void winCheck() {
@@ -71,6 +93,7 @@ public class WinCheck {
     }
 
     System.out.println("*~*~*~*~*");
+
 
     if (allPlayers.get(0).getScore() > allPlayers.get(1).getScore()) {
       System.out.println(allPlayers.get(0).getName() + " wins!");
