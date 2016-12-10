@@ -54,36 +54,41 @@ public class GameManager {
   }
 
   public void turnHandler(){
-    this.winCheck.showAllHands();
-    ArrayList<String> choices = new ArrayList<String>();
-    for (CardPlayer player : this.allPlayers){
-      System.out.println("You're up, " + player.getName() + ". Stick or twist?");
-      // int score = this.winCheck.calcScore(player);
-      // if(score<=21)
-      //   deal(player);
-      String choice = System.console().readLine().toLowerCase();
-      choices.add(choices.size(), choice);
-      System.out.println("You have chosen to " + choice);
-      if(choice.equals("twist")) {
-        deal(player);
-        this.winCheck.bustCheck(player);
+    System.out.println("player(s) left in game: " + this.allPlayers.size());
+    if (this.allPlayers.size() == 2) {
+      this.winCheck.showAllHands();
+      ArrayList<String> choices = new ArrayList<String>();
+      for (CardPlayer player : this.allPlayers){
+        System.out.println("You're up, " + player.getName() + ". Stick or twist?");
+        String choice = System.console().readLine().toLowerCase();
+        choices.add(choices.size(), choice);
+        System.out.println("You have chosen to " + choice);
+        if(choice.equals("twist")) {
+          deal(player);
+          this.winCheck.bustCheck(player);
+        }
       }
-    }
-    String choice1 = choices.get(0);
-    String choice2 = choices.get(1);
+      String choice1 = choices.get(0);
+      String choice2 = choices.get(1);
 
-    System.out.println("*~*~*~*~*");
+      System.out.println("*~*~*~*~*");
 
-    if( choice1.equals("stick") && choice2.equals("stick") ) {
+      if( choice1.equals("stick") && choice2.equals("stick") ) {
        winCheck();
-    } else {
+     } else {
        turnHandler();     
-    }
-  }
+     }
+   }
+ }
 
-  public void winCheck(){
-    this.winCheck.showAllHands();
-    this.winCheck.winCheck();
-  }
+ public void winCheck(){
+  this.winCheck.showAllHands();
+  this.winCheck.winCheck();
+}
+
+public static void endGame(){
+  System.out.println("Thanks for playing!");
+  System.exit(0);
+}
 
 }
