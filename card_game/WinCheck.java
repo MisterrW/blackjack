@@ -72,8 +72,8 @@ public class WinCheck {
     }
 
     if (player.getScore() == 21 && player.showHand().size() == 2) {
-      System.out.println(player.getName() + " has a Pontoon!" + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
-      player.setSpecialScore("Pontoon");
+      System.out.println(player.getName() + " has a Pontoon! " + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
+      player.setSpecialScore("pontoon");
     }
     
     return player.getScore();
