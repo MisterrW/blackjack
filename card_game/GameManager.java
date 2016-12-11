@@ -7,9 +7,10 @@ public class GameManager {
   private Dealer dealer;
   private WinCheck winCheck;
 
-  public GameManager(){
-    this.allPlayers = new ArrayList<CardPlayer>();
-    this.initialPlayers = new ArrayList<CardPlayer>();
+  public GameManager(ArrayList<CardPlayer> allPlayers, ArrayList<CardPlayer> initialPlayers, Dealer dealer){
+    this.dealer = dealer;
+    this.allPlayers = allPlayers;
+    this.initialPlayers = initialPlayers;
     this.winCheck = new WinCheck(this.allPlayers);
   }
 
@@ -19,18 +20,9 @@ public class GameManager {
     turnHandler();
   }
 
-  public void setup(){
-    Gambler player1 = new Gambler("Will", new Hand());
-    Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
-    this.dealer = dealer;
-    
+  public void setup(){   
     dealer.fillDeck();
     dealer.shuffleCards();
-
-    this.allPlayers.add(allPlayers.size(), player1);
-    this.allPlayers.add(allPlayers.size(), dealer);
-    this.initialPlayers.add(initialPlayers.size(), player1);
-    this.initialPlayers.add(initialPlayers.size(), dealer);
   }
 
   public ArrayList<CardPlayer> checkInitialPlayers(){
@@ -74,26 +66,26 @@ public class GameManager {
 
       if( choice1.equals("stick") && choice2.equals("stick") ) {
        winCheck();
-     } else {
+      } else {
        turnHandler();     
-     }
-   }
- }
-
- public void winCheck(){
-  this.winCheck.showAllHands();
-  this.winCheck.winCheck();
-}
-
-public static void endGame(){
-  System.out.println("Thanks for playing!");
-  System.out.println("Type P to play again, or anything else to quit.");
-  String choice = System.console().readLine().toLowerCase();
-  if (choice.equals("p")) {
-    Runner.setup();
-  } else {
-    System.exit(0);
+      }
+    }
   }
-}
+
+  public void winCheck(){
+    this.winCheck.showAllHands();
+    this.winCheck.winCheck();
+  }
+
+  public static void endGame(){
+    System.out.println("Thanks for playing!");
+    System.out.println("Type P to play again, or anything else to quit.");
+    String choice = System.console().readLine().toLowerCase();
+    if (choice.equals("p")) {
+      Runner.setup();
+    } else {
+      System.exit(0);
+    }
+  }
 
 }
