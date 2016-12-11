@@ -51,6 +51,23 @@ public class WinCheckTest {
     assertEquals("pontoon", player.getSpecialScore());
   }
 
+  @Test
+  public void test5CardTrickStatement(){
+    Card card1 = new Card(CardSuit.HEARTS, CardValue.TWO);
+    Card card2 = new Card(CardSuit.DIAMONDS, CardValue.TWO);
+    Card card3 = new Card(CardSuit.CLUBS, CardValue.TWO);
+    Card card4 = new Card(CardSuit.SPADES, CardValue.TWO);
+    Card card5 = new Card(CardSuit.HEARTS, CardValue.THREE);
+    player.receiveCard(card1);
+    player.receiveCard(card2);
+    player.receiveCard(card3);
+    player.receiveCard(card4);
+    player.receiveCard(card5);
+    
+    winCheck.calcScore(player);
+    assertEquals("5 card trick", player.getSpecialScore());
+  }
+
   // @Test
   // public void testBustCheck(){
   //   Card card1 = new Card(CardSuit.DIAMONDS, CardValue.JACK);

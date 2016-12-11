@@ -75,6 +75,11 @@ public class WinCheck {
       System.out.println(player.getName() + " has a Pontoon! " + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
       player.setSpecialScore("pontoon");
     }
+
+    if (player.getScore() <= 21 && player.showHand().size() >= 5) {
+      System.out.println(player.getName() + " has a 5 card trick!");
+      player.setSpecialScore("5 card trick");
+    }
     
     return player.getScore();
   }
@@ -96,8 +101,14 @@ public class WinCheck {
 
     System.out.println("*~*~*~*~*");
 
-    if (this.allPlayers.size() == 2) {
-      if (this.allPlayers.get(0).getScore() > this.allPlayers.get(1).getScore()) {
+    // if (this.allPlayers.size() == 2) {
+    //   if (this.allPlayers.get(0).getSpecialScore().equals("pontoon") && !this.allPlayers.get(1).getSpecialScore().equals("pontoon")) {
+
+    //     System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
+
+    //   } else if {
+
+      } else if (this.allPlayers.get(0).getScore() > this.allPlayers.get(1).getScore()) {
         System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
       } 
       else if (this.allPlayers.get(0).getScore() < this.allPlayers.get(1).getScore()) {
@@ -113,6 +124,5 @@ public class WinCheck {
     }
     GameManager.endGame();
   }
-
 
 }

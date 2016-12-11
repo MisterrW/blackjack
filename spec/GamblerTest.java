@@ -43,7 +43,4 @@ public class GamblerTest {
     player.setSpecialScore("pontoon");
     assertEquals("pontoon", player.getSpecialScore());
   }
-
-
-  
 }
