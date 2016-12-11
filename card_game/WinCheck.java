@@ -19,11 +19,7 @@ public class WinCheck {
 
     ArrayList<Card> cards = player.showHand();
     for (Card card : cards) {
-      String value = card.getValue().toString().toLowerCase();
-      String valueCaps = value.substring(0, 1).toUpperCase() + value.substring(1);
-      String suit = card.getSuit().toString().toLowerCase();
-      String suitCaps = suit.substring(0, 1).toUpperCase() + suit.substring(1);
-      System.out.println(valueCaps + " of " + suitCaps);
+      System.out.println(card.getName());
     }
     System.out.println("*~*~*~*~*");
   }
