@@ -5,11 +5,13 @@ public abstract class Player{
   private String name;
   private Hand hand;
   private int score;
+  private String specialScore;
 
   public Player(String name, Hand hand) {
     this.hand = hand;
     this.name = name;
     this.score = 0;
+    this.specialScore = "";
   }
 
   public ArrayList<Card> showHand() {
@@ -30,5 +32,13 @@ public abstract class Player{
 
   public int getScore() {
     return this.score;
+  }
+
+  public void setSpecialScore(String specialScore) {
+    this.specialScore = specialScore;
+  }
+
+  public String getSpecialScore() {
+    return this.specialScore;
   }
 }

@@ -8,4 +8,6 @@ public interface CardPlayer {
   public String getName();
   public void setScore(int score);
   public int getScore();
+  public void setSpecialScore(String specialScore);
+  public String getSpecialScore();
 }

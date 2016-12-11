@@ -19,7 +19,7 @@ public class WinCheck {
 
     ArrayList<Card> cards = player.showHand();
     for (Card card : cards) {
-      System.out.println(card.getName());
+      System.out.println("- " + card.getName());
     }
     System.out.println("*~*~*~*~*");
   }
@@ -70,6 +70,11 @@ public class WinCheck {
         }
       }
     }
+
+    if (player.getScore() == 21 && player.showHand().size() == 2) {
+      System.out.println(player.getName() + " has a Pontoon!" + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
+      player.setSpecialScore("Pontoon");
+    }
     
     return player.getScore();
   }
@@ -87,23 +92,22 @@ public class WinCheck {
   public void winCheck() {
     for (CardPlayer player : allPlayers) {
       calcScore(player);
-      System.out.println(player.getName() + " scores " + player.getScore());
     }
 
     System.out.println("*~*~*~*~*");
 
     if (this.allPlayers.size() == 2) {
       if (this.allPlayers.get(0).getScore() > this.allPlayers.get(1).getScore()) {
-        System.out.println(this.allPlayers.get(0).getName() + " wins!");
+        System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
       } 
       else if (this.allPlayers.get(0).getScore() < this.allPlayers.get(1).getScore()) {
-        System.out.println(this.allPlayers.get(1).getName() + " wins!");
+        System.out.println(this.allPlayers.get(1).getName() + " wins with " + this.allPlayers.get(1).getScore());
       } 
       else {
         System.out.println("It's a draw!");
       }
     } else if (this.allPlayers.size() == 1) {
-      System.out.println(this.allPlayers.get(0).getName() + " wins!");
+      System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
     } else if (this.allPlayers.size() == 0) {
       System.out.println("Everyone's bust! Draw!");
     }

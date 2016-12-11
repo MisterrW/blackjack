@@ -41,8 +41,10 @@ public class GameManager {
     }
   }
 
-  public void deal(CardPlayer player){
-    player.receiveCard(this.dealer.dealCard());
+  public Card deal(CardPlayer player){
+    Card card = this.dealer.dealCard();
+    player.receiveCard(card);
+    return card;
   }
 
   public void turnHandler(){
@@ -53,16 +55,19 @@ public class GameManager {
         System.out.println("You're up, " + player.getName() + ". Stick or twist?");
         String choice = System.console().readLine().toLowerCase();
         choices.add(choices.size(), choice);
-        System.out.println("You have chosen to " + choice + ".");
+        System.out.println("You  " + choice + "!");
         if(choice.equals("twist")) {
-          deal(player);
+          Card card = deal(player);
+          System.out.println("You receive the " + card.getName() + ".");
+          System.out.println("Your hand is now worth " + this.winCheck.calcScore(player) + ".");
+          System.out.println("*~*~*~*~*");
           this.winCheck.bustCheck(player);
         }
       }
       String choice1 = choices.get(0);
       String choice2 = choices.get(1);
 
-      System.out.println("*~*~*~*~*");
+      
 
       if( choice1.equals("stick") && choice2.equals("stick") ) {
        winCheck();
