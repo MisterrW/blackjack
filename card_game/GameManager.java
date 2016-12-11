@@ -21,7 +21,7 @@ public class GameManager {
 
   public void setup(){
     Gambler player1 = new Gambler("Will", new Hand());
-    Dealer dealer = new Dealer("Des the Dodgy Dealer", new Hand(), new Deck());
+    Dealer dealer = new Dealer("Des the Dealer", new Hand(), new Deck());
     this.dealer = dealer;
     
     dealer.fillDeck();
@@ -54,7 +54,6 @@ public class GameManager {
   }
 
   public void turnHandler(){
-    System.out.println("player(s) left in game: " + this.allPlayers.size());
     if (this.allPlayers.size() == 2) {
       this.winCheck.showAllHands();
       ArrayList<String> choices = new ArrayList<String>();
@@ -62,7 +61,7 @@ public class GameManager {
         System.out.println("You're up, " + player.getName() + ". Stick or twist?");
         String choice = System.console().readLine().toLowerCase();
         choices.add(choices.size(), choice);
-        System.out.println("You have chosen to " + choice);
+        System.out.println("You have chosen to " + choice + ".");
         if(choice.equals("twist")) {
           deal(player);
           this.winCheck.bustCheck(player);
@@ -88,7 +87,13 @@ public class GameManager {
 
 public static void endGame(){
   System.out.println("Thanks for playing!");
-  System.exit(0);
+  System.out.println("Type P to play again, or anything else to quit.");
+  String choice = System.console().readLine().toLowerCase();
+  if (choice.equals("p")) {
+    Runner.setup();
+  } else {
+    System.exit(0);
+  }
 }
 
 }
