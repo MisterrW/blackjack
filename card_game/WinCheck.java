@@ -88,7 +88,6 @@ public class WinCheck {
     if(calcScore(player) > 21) {
       showHand(player);
       System.out.println(player.getName() + " is bust!");
-      System.out.println(player.getScore());
       this.allPlayers.remove(player);
       winCheck();
     }
