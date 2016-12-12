@@ -20,8 +20,10 @@ public class GameManager {
     turnHandler();
   }
 
-  public void setup(){   
+  public void setup(){
+    System.out.println("~* Filling the Deck! *~"); 
     dealer.fillDeck();
+    System.out.println("~* Shuffling the Deck! *~"); 
     dealer.shuffleCards();
   }
 
@@ -30,9 +32,11 @@ public class GameManager {
   }
 
   public void initialDeal(){
+    System.out.println("~* Initial deal! All players receive two cards! *~"); 
     for(int i=1; i<=2; i++) {
       dealAll();
     }
+    this.winCheck.showAllHands();
   }
 
   public void dealAll(){
@@ -48,20 +52,25 @@ public class GameManager {
   }
 
   public void turnHandler(){
-    if (this.allPlayers.size() == 2) {
-      this.winCheck.showAllHands();
+    if (this.allPlayers.size() == 2) 
+    {
       ArrayList<String> choices = new ArrayList<String>();
       for (CardPlayer player : this.allPlayers){
-        System.out.println("You're up, " + player.getName() + ". Stick or twist?");
+        System.out.println("~* You're up, " + player.getName() + ". Stick or twist? *~");
         String choice = System.console().readLine().toLowerCase();
         choices.add(choices.size(), choice);
         System.out.println("You  " + choice + "!");
-        if(choice.equals("twist")) {
+        if(choice.equals("twist")) 
+        {
           Card card = deal(player);
           System.out.println("You receive the " + card.getName() + ".");
-          System.out.println("Your hand is now worth " + this.winCheck.calcScore(player) + ".");
+          System.out.println(player.getName() + ", your hand is now worth " + this.winCheck.calcScore(player) + ".");
           System.out.println("*~*~*~*~*");
           this.winCheck.bustCheck(player);
+        } 
+        else 
+        {
+          System.out.println(player.getName() + ", your hand is worth " + this.winCheck.calcScore(player) + ".");
         }
       }
       String choice1 = choices.get(0);
@@ -83,8 +92,8 @@ public class GameManager {
   }
 
   public static void endGame(){
-    System.out.println("Thanks for playing!");
-    System.out.println("Type P to play again, or anything else to quit.");
+    System.out.println("~* Thanks for playing! *~");
+    System.out.println("~* Type P to play again, or anything else to quit. *~");
     String choice = System.console().readLine().toLowerCase();
     if (choice.equals("p")) {
       Runner.setup();

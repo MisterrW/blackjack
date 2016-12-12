@@ -99,7 +99,7 @@ public class WinCheck {
       calcScore(player);
     }
     winCheckSpecialScore();
-    System.out.println(this.outcome);
+    System.out.println("~* " + this.outcome + " *~");
     GameManager.endGame();
   }
 
