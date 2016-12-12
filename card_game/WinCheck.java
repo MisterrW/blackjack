@@ -3,9 +3,11 @@ import java.util.*;
 
 public class WinCheck {
   private ArrayList<CardPlayer> allPlayers;
+  private String outcome;
 
   public WinCheck(ArrayList<CardPlayer> allPlayers){
     this.allPlayers = allPlayers;
+    this.outcome = new String("");
   }
 
   public void showAllHands() {
@@ -74,9 +76,7 @@ public class WinCheck {
     if (player.getScore() == 21 && player.showHand().size() == 2) {
       System.out.println(player.getName() + " has a Pontoon! " + player.showHand().get(0).getName() + " and " + player.showHand().get(1).getName() + ".");
       player.setSpecialScore("pontoon");
-    }
-
-    if (player.getScore() <= 21 && player.showHand().size() >= 5) {
+    } else if (player.getScore() <= 21 && player.showHand().size() >= 5) {
       System.out.println(player.getName() + " has a 5 card trick!");
       player.setSpecialScore("5 card trick");
     }
@@ -95,34 +95,94 @@ public class WinCheck {
   }
 
   public void winCheck() {
+    System.out.println("*~*~*~*~*");
     for (CardPlayer player : allPlayers) {
       calcScore(player);
     }
-
-    System.out.println("*~*~*~*~*");
-
-    // if (this.allPlayers.size() == 2) {
-    //   if (this.allPlayers.get(0).getSpecialScore().equals("pontoon") && !this.allPlayers.get(1).getSpecialScore().equals("pontoon")) {
-
-    //     System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
-
-    //   } else if {
-
-      } else if (this.allPlayers.get(0).getScore() > this.allPlayers.get(1).getScore()) {
-        System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
-      } 
-      else if (this.allPlayers.get(0).getScore() < this.allPlayers.get(1).getScore()) {
-        System.out.println(this.allPlayers.get(1).getName() + " wins with " + this.allPlayers.get(1).getScore());
-      } 
-      else {
-        System.out.println("It's a draw!");
-      }
-    } else if (this.allPlayers.size() == 1) {
-      System.out.println(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore());
-    } else if (this.allPlayers.size() == 0) {
-      System.out.println("Everyone's bust! Draw!");
-    }
+    winCheckSpecialScore();
+    System.out.println(this.outcome);
     GameManager.endGame();
+  }
+
+    public String fakeWinCheck() {
+    System.out.println("*~*~*~*~*");
+    for (CardPlayer player : allPlayers) {
+      calcScore(player);
+    }
+    winCheckSpecialScore();
+    System.out.println(this.outcome);
+    return this.outcome;
+  }
+
+  public void winCheckSpecialScore() {
+    if (this.allPlayers.size() == 2) {
+      if (this.allPlayers.get(0).getSpecialScore().equals("pontoon") && !this.allPlayers.get(1).getSpecialScore().equals("pontoon")) 
+      {
+        this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with pontoon!");
+        return;
+      }
+      else if (this.allPlayers.get(1).getSpecialScore().equals("pontoon") && !this.allPlayers.get(0).getSpecialScore().equals("pontoon")) 
+      {
+        this.outcome = String.format(this.allPlayers.get(1).getName() + " wins with pontoon!");
+        return;
+      }
+      else if (this.allPlayers.get(0).getSpecialScore().equals("pontoon") && this.allPlayers.get(1).getSpecialScore().equals("pontoon")) 
+      {
+        this.outcome = String.format("Wow, two pontoons! Draw!");
+        return;
+      }
+      else if (this.allPlayers.get(0).getSpecialScore().equals("5 card trick") && !this.allPlayers.get(1).getSpecialScore().equals("5 card trick")) 
+      {
+        this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with 5 card trick!");
+        return;
+      }
+      else if (this.allPlayers.get(1).getSpecialScore().equals("5 card trick") && !this.allPlayers.get(0).getSpecialScore().equals("5 card trick")) 
+      {
+        this.outcome = String.format(this.allPlayers.get(1).getName() + " wins with 5 card trick!");
+        return;
+      }
+      else if (this.allPlayers.get(0).getSpecialScore().equals("5 card trick") && this.allPlayers.get(1).getSpecialScore().equals("5 card trick")) 
+      {
+        this.outcome = String.format("Wow, two 5 card tricks! Draw!");
+        return;
+      }
+      else
+      {
+        winCheckNormalScore();
+      }
+    }
+    winCheckNormalScore();  
+  }
+  
+  public void winCheckNormalScore() {
+    if (this.allPlayers.size() == 2) {
+      if (this.allPlayers.get(0).getScore() > this.allPlayers.get(1).getScore()) 
+      {
+        this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore() + "!");
+        return;
+      } 
+      else if (this.allPlayers.get(0).getScore() < this.allPlayers.get(1).getScore()) 
+      {
+        this.outcome = String.format(this.allPlayers.get(1).getName() + " wins with " + this.allPlayers.get(1).getScore() + "!");
+        return;
+      } 
+      else 
+      {
+        this.outcome = String.format("It's a draw!");
+        return;
+      }
+    } 
+    else if (this.allPlayers.size() == 1) 
+    {
+      this.outcome = String.format(this.allPlayers.get(0).getName() + " wins with " + this.allPlayers.get(0).getScore() + "!");
+      return;
+    } 
+    else if (this.allPlayers.size() == 0) 
+    {
+      this.outcome = String.format("Everyone's bust! Draw!");
+      return;
+    }
+    return;
   }
 
 }
